@@ -18,14 +18,26 @@
 <div id="wrapper">
     <div id="sidebar-wrapper" ng-controller="labelController">
         <ul class="sidebar-nav">
-            <li class="sidebar-brand"><a href="#">My Task</a></li>
-            <li><a href="#" class="inbox_icon">Inbox</a><div class="todo-badge">14</div></li>
-            <li><a href="#" class="all_icon">All Tasks</a><div class="todo-badge">14</div></li>
-            <li><a href="#" class="pending_icon">All Pending</a><div class="todo-badge">14</div></li>
+            <li class="sidebar-brand">
+                <a href="#">My Task</a>
+            </li>
+            <li>
+                <a href="#" class="inbox_icon">Inbox</a>
+                <div class="todo-badge">{{getTasksLengthForLabel('Inbox')}}</div>
+            </li>
+            <li>
+                <a href="#" class="all_icon">All Tasks</a>
+                <div class="todo-badge">{{getAllTasksLength()}}</div>
+            </li>
+            <li>
+                <a href="#" class="pending_icon">All Pending</a>
+                <div class="todo-badge">{{getPendingTasksLength()}}</div>
+            </li>
             <li><br></li>
-            <li ng-repeat="label in labelData.labels">
+            <li ng-repeat="label in labelData">
                 <div class="circle" ng-class="label.color"></div>
-                <a href="#">{{label.name}}</a><div class="todo-badge">14</div>
+                <a href="#" ng-click="setLabel(label.name)">{{label.name}}</a>
+                <div class="todo-badge">{{getTasksLengthForLabel(label.name)}}</div>
             </li>          
         </ul>
     </div>
@@ -68,7 +80,7 @@
                         </form>
 
                         <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="task in taskData.tasks">
+                            <li class="list-group-item" ng-repeat="task in taskData">
                                 <input id="{{task.id}}" type="checkbox" checked>
                                 <label for="{{task.id}}" class='checkbox-label'>{{task.name}}</label>
                                 <span class="glyphicon glyphicon-trash pull-right action-icon"  aria-hidden="true"></span>
@@ -86,6 +98,7 @@
 
 
 <script src="app/app.js"></script>
+<script src="app/common/common-service.js"></script>
 <script src="app/label/label.js"></script>
 <script src="app/task/task.js"></script>
 </body>
