@@ -21,6 +21,27 @@ myModule.service('dataService', function($http, $q){
         return defer.promise;    
     };
 
+    this.updateTask = function(updatedTask){
+        angular.forEach(arrAllTasks, function(task, key){
+            if(task.id === updatedTask.id){
+                arrAllTasks[key] = updatedTask;
+            }
+        });
+    };
+
+    ///////////////// label getter and setter /////////////////////
+
+    var selectedLabel = "";
+    this.setSelectedLabel = function(label){
+        selectedLabel = label;
+    };
+    this.getSelectedLabel = function(){
+        if(selectedLabel == ""){
+            selectedLabel = "Inbox";
+        }
+        return selectedLabel;
+    };
+
     this.getTasksForLabel = function(label) {
         var tasks = [];
         angular.forEach(arrAllTasks, function(obj, key){

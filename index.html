@@ -12,6 +12,7 @@
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/angular_1.4.js"></script>
+    <script src="js/angular-ui-router.js"></script>
 </head>
 <body ng-app="MyTask">
 
@@ -22,21 +23,21 @@
                 <a href="#">My Task</a>
             </li>
             <li>
-                <a href="#" class="inbox_icon">Inbox</a>
+                <a href="#" class="inbox_icon" ng-click="setLabel('Inbox')">Inbox</a>
                 <div class="todo-badge">{{getTasksLengthForLabel('Inbox')}}</div>
             </li>
             <li>
-                <a href="#" class="all_icon">All Tasks</a>
+                <a href="#" class="all_icon" ng-click="setLabel('All Tasks')">All Tasks</a>
                 <div class="todo-badge">{{getAllTasksLength()}}</div>
             </li>
             <li>
-                <a href="#" class="pending_icon">All Pending</a>
+                <a href="#" class="pending_icon" ng-click="setLabel('All Pending')">All Pending</a>
                 <div class="todo-badge">{{getPendingTasksLength()}}</div>
             </li>
             <li><br></li>
             <li ng-repeat="label in labelData">
                 <div class="circle" ng-class="label.color"></div>
-                <a href="#" ng-click="setLabel(label.name)">{{label.name}}</a>
+                <a ng-click="setLabel(label.name)">{{label.name}}</a>
                 <div class="todo-badge">{{getTasksLengthForLabel(label.name)}}</div>
             </li>          
         </ul>
@@ -56,43 +57,7 @@
             </div>
         </div>
 
-        <div class="padding-20" id="page-body" ng-controller="taskListController"> 
-            <div class="panel panel-default bg-update">
-                <div class="panel-body">
-                    <div class="panel-top-header">
-                        Inbox
-                        <i class="fa fa-pencil-square-o pull-right action-icon"></i>
-                    </div>
-
-                    <div class="padding-20">
-                        <form class="form-horizontal form-padding padding-bottom-20" >
-                            <div class="row">
-                                <div class="col-sm-10" >
-                                    <input type="text" class="form-control input-create-task" placeholder="Create New Task"/>
-                                </div>
-                                <div class="col-sm-1">
-
-                                </div>
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-info pull-right" onclick="javascript:window.open('createTask.html','_self')">Add Task</button>
-                                </div>
-                            </div>
-                        </form>
-
-                        <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="task in taskData">
-                                <input id="{{task.id}}" type="checkbox" checked>
-                                <label for="{{task.id}}" class='checkbox-label'>{{task.name}}</label>
-                                <span class="glyphicon glyphicon-trash pull-right action-icon"  aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-pencil pull-right action-icon"  aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty pull-right action-icon"  aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-time pull-right action-icon"  aria-hidden="true"></span>
-                            </li>                          
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <ui-view></ui-view>    
     </div>
 </div>
 

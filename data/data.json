@@ -35,7 +35,7 @@
         "name":"Purchase Grocery",
         "dueDate":"12/30/1981",
         "note":"",
-        "completed":true,
+        "completed":false,
         "labelName":"Home"
       }
     ]
