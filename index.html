@@ -42,15 +42,19 @@
             </li>          
         </ul>
     </div>
-    <div id="page-content-wrapper">
+    <div id="page-content-wrapper" ng-controller="headerController">
         <div class="panel panel-default bg-container" id="page-header">
             <div class="panel-body">
                 <div class="panel-top-header padding-header">
                     <form class="form-horizontal form-padding">
                         <div class="row height-65">
                             <label class="col-sm-1 filter-text">Filter By :</label>
-                            <div class="col-sm-2 filter-input"><input type="text" class="form-control" /></div>
-                            <button type="button" id="btnCreateLabel" class="btn btn-danger pull-right btn-task-category" onclick="javascript:window.open('createLabel.html','_self')">Create Label</button>
+                            <div class="col-sm-2 filter-input">
+                                <input type="text" class="form-control" ng-model="txtFilter" ng-change="updateFilter()"/>
+                            </div>
+                            <button type="button" id="btnCreateLabel" 
+                                class="btn btn-danger pull-right btn-task-category"
+                                ng-click="createNewLabel()">Create Label</button>
                         </div>
                     </form>
                 </div>
@@ -66,5 +70,6 @@
 <script src="app/common/common-service.js"></script>
 <script src="app/label/label.js"></script>
 <script src="app/task/task.js"></script>
+<script src="app/header/header.js"></script>
 </body>
 </html>

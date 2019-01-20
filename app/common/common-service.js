@@ -29,6 +29,14 @@ myModule.service('dataService', function($http, $q){
         });
     };
 
+    this.addNewLabel = function(label){
+        arrLabels.push(label);
+    };
+
+    this.addNewTask=function(task){
+        arrAllTasks.push(task);
+    };
+
     ///////////////// label getter and setter /////////////////////
 
     var selectedLabel = "";
@@ -36,7 +44,7 @@ myModule.service('dataService', function($http, $q){
         selectedLabel = label;
     };
     this.getSelectedLabel = function(){
-        if(selectedLabel == ""){
+        if(selectedLabel === ""){
             selectedLabel = "Inbox";
         }
         return selectedLabel;
